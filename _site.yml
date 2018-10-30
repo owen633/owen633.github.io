@@ -1,13 +1,16 @@
-name: "Yay internet!"
+name: "Jianyou's Website"
 output_dir: "."
 navbar:
-  title: "Home"
+  title: "Jianyou's Awesome Website"
   right:
-    - text: "About"
+    - text: "About me"
       href: about.html
+    - text: "Home"
+      href: index.html
     - icon: fa-envelope fa-lg
-      href: mailto:<you@youremail.com>
+      href: mailto:jl5296@columbia.edu
     - icon: fa-github fa-lg
-      href: http://github.com/<YOUR_GH_NAME>/
+      href: http://github.com/owen633/
 output:
   html_document
+    theme:flatly

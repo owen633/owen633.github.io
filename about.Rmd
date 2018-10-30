@@ -7,3 +7,5 @@ title: "About"
 Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
 
 If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+
+This site is made in RMarkdown using three essential components: index.html, _site.yml, and about.html. It is hosted remotely on Github; the source code can be found at this [repo directory](https://github.com/owen633/owen633.github.io).

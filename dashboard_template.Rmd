@@ -1,5 +1,5 @@
 ---
-title: "Flexdashboard"
+title: "NYC Restaurant Inspections Flexdashboard"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -58,15 +58,25 @@ common_food_type =
 
 # Create boxplot to display distribution of scores across these food styles
 inner_join(manh_rest_inspect, common_food_type, by = "cuisine_description") %>% 
-  mutate(cuisine_description = as.factor(cuisine_description), cuisine_description = fct_reorder(cuisine_description, score)) %>% 
+  mutate(cuisine_description = as.factor(cuisine_description),cuisine_description = fct_recode(cuisine_description, "Latin" = "Latin (Cuban, Dominican, Puerto Rican, South & Central American)"), cuisine_description = fct_reorder(cuisine_description, score)) %>% 
   plot_ly(y = ~score, color = ~cuisine_description, type = "box", colors = "Set2") %>% 
-  layout(title = "Score Distributions of 10 Most Popular Food Styles")
+  layout(title = "Score Distributions of 10 Most Popular Food Styles in Manhattan")
 
 ```
 
 ### Chart C
 
-```{r}
-
+```{r bargraph}
+# Create bargraph showing the top 10 areas with the most number of A level restaurants
+manh_rest_inspect %>% 
+  count(zipcode) %>% 
+  top_n(10) %>% 
+  mutate(zipcode = as.factor(zipcode), zipcode = fct_reorder(zipcode, n)) %>% 
+  plot_ly(x = ~zipcode, y = ~n, color = ~zipcode, type = "bar") %>% 
+  layout(title = "10 Areas with the Most Number of A-ranked Restuarants in Manhattan",
+         xaxis = list(title = "Zipcode"),
+         yaxis = list(title = "Number of A-level Restaurants")
+         )
+  
 ```
 

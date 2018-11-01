@@ -73,7 +73,7 @@ manh_rest_inspect %>%
   top_n(10) %>% 
   mutate(zipcode = as.factor(zipcode), zipcode = fct_reorder(zipcode, n)) %>% 
   plot_ly(x = ~zipcode, y = ~n, color = ~zipcode, type = "bar") %>% 
-  layout(title = "10 Areas with the Most Number of A-ranked Restuarants in Manhattan",
+  layout(title = "10 Areas with the Most Number of A-ranked Restaurants in Manhattan",
          xaxis = list(title = "Zipcode"),
          yaxis = list(title = "Number of A-level Restaurants")
          )

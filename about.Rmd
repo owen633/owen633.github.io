@@ -4,8 +4,12 @@ title: "About"
 
 ### About this site
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
-
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
-
 This site is made in RMarkdown using three essential components: index.html, _site.yml, and about.html. It is hosted remotely on Github; the source code can be found at this [repo directory](https://github.com/owen633/owen633.github.io).
+
+The Rstudio Version used to make this project is 3.5.1. The packages used are *tidyverse(v1.2.1)*, *viridis*, *plotly*, and the class dataset *p8105.datasets*.
+
+### About the data
+
+The data from which the flexdashboard plotly plots were created is from "NYC Restaurant Inspection Results", in which the DOHMC evaluates each restaurant based on different criteria. Scores are assigned to each of them and converted to letter grades with lower scores corresponding to higher grades.
+
+In order to produce reasonable and readable plotly graphs, I randomly sampled 5000 restaurants of rank A situated solely in Manhattan as a subset from the entire dataset and made a scatterplot, a boxplot, and a bargraph to conductexploratory analysis of the data visually.

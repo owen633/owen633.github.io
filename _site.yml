@@ -8,7 +8,9 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Resume"
-      hreft: resume.html
+      href: resume.html
+    - text: "Dashboard"
+      href: dashboard_template.html
     - icon: fab fa-linkedin 
       href: https://www.linkedin.com/in/jyl633/
     - icon: fa-envelope fa-lg

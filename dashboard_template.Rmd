@@ -1,0 +1,72 @@
+---
+title: "Flexdashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(viridis)
+library(p8105.datasets)
+library(plotly)
+```
+
+```{r read_filter_data}
+set.seed(1)
+
+# randomly sample 5000 restaurants located in Manhattan with A rank
+data(rest_inspec)
+manh_rest_inspect = 
+  rest_inspec %>% 
+  mutate(boro = str_replace(boro, "MANHATTAN", "Manhattan"), building = as.numeric(building))  %>% 
+  select(boro, building, zipcode, cuisine_description, dba, score, grade) %>% 
+  filter(boro == "Manhattan", grade %in% c("A"), !is.na(score), !is.na(building)) %>% 
+  sample_n(5000)
+
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r scatter_plot}
+# Create scatterplot showing the locations of high quality restaurants
+manh_rest_inspect %>% 
+  mutate(text_label = str_c("Name:", dba, '\nTotal Score:',score, '\nGrade:', grade)) %>% 
+  plot_ly(x = ~building, y = ~zipcode, type = "scatter", mode = "markers", alpha = 0.5, color = ~score, text = ~text_label) %>% 
+  layout(title = 'Locations of High Quality Manhattan Restaurants', 
+         xaxis = list(title = 'Building Number', range = c(0, 10000), exponentformat = 'none'),
+         yaxis = list(title = 'Zipcode', exponentformat = 'none')
+)
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r boxplot}
+# select the 10 most common food types in Manhattan
+common_food_type = 
+  manh_rest_inspect %>% 
+  count(cuisine_description, sort = TRUE) %>% 
+  top_n(10) %>% 
+  select(cuisine_description)
+
+# Create boxplot to display distribution of scores across these food styles
+inner_join(manh_rest_inspect, common_food_type, by = "cuisine_description") %>% 
+  mutate(cuisine_description = as.factor(cuisine_description), cuisine_description = fct_reorder(cuisine_description, score)) %>% 
+  plot_ly(y = ~score, color = ~cuisine_description, type = "box", colors = "Set2") %>% 
+  layout(title = "Score Distributions of 10 Most Popular Food Styles")
+
+```
+
+### Chart C
+
+```{r}
+
+```
+

@@ -20,7 +20,7 @@ This project focuses on building a personal website using Rmd files and site.yml
 
 ### Picture of Myself
 
-<img src = "images/profile_picture.jpg" style = "width:80%">
+<img src = "images/profile_picture.jpg" alt = "This is me" width = "200" height = "500">
 
 
 

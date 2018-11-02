@@ -1,10 +1,10 @@
 ---
 title: "Resume"
-author: "Jianyou Liu"
-date: "October 31, 2018"
 output: html_document
 ---
 
 ### This page shows my resume.
+
+Click [here](resume//Resume_DS_HW4.pdf) to view it
 
 
